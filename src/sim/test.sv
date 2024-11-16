@@ -44,3 +44,4 @@ class test_FP_Multiplier extends base_test;
     seq.randomize() with {num inside {[300:500]};};
   endfunction
 endclass
+
