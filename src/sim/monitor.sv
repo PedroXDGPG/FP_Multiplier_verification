@@ -17,7 +17,7 @@ class monitor extends uvm_monitor;
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
     forever begin
-      @(posedge vif.clk);
+
 
           Item item = new();
           item.r_mode = vif.r_mode;
@@ -28,7 +28,7 @@ class monitor extends uvm_monitor;
           item.udrf = vif.udrf;
           mon_analysis_port.write(item);
           `uvm_info("MON",$sformatf("SAW item %s", item.convert2str()),UVM_HIGH)
-
+          @(posedge vif.clk);
     end
   endtask
 endclass
