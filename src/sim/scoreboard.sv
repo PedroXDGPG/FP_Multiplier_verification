@@ -89,15 +89,15 @@ class scoreboard extends uvm_scoreboard;
       end
 
       ///////////////////////////////// Aplicar modo de redondeo   /////////////////////////////////////
-    guard  = sig_Z[23];
-    round  = sig_Z[22];
-    sticky = sig_Z[21]; // Usamos exclusivamente el bit 21 como sticky
+    guard  = man_Z[23];
+    round  = man_Z[22];
+    sticky = man_Z[21]; // Usamos exclusivamente el bit 21 como sticky
 
     case (item.r_mode)
       3'b000: begin
         // Round to nearest, ties to even
-        if ((round && (guard || sticky)) || (round && !guard && !sticky && sig_Z[24])) begin
-          sig_Z = sig_Z + 1;
+        if ((round && (guard || sticky)) || (round && !guard && !sticky && man_Z[24])) begin
+          man_Z = man_Z + 1;
         end
       end
 
@@ -109,21 +109,21 @@ class scoreboard extends uvm_scoreboard;
       3'b010: begin
         // Round towards −∞
         if (sign_Z && (guard || sticky)) begin
-          sig_Z = sig_Z + 1;
+          man_Z = man_Z + 1;
         end
       end
 
       3'b011: begin
         // Round towards +∞
         if (!sign_Z && (guard || sticky)) begin
-          sig_Z = sig_Z + 1;
+          man_Z = man_Z + 1;
         end
       end
 
       3'b100: begin
         // Round to nearest, ties away from zero
         if ((round && (guard || sticky)) || (round && !guard && !sticky)) begin
-          sig_Z = sig_Z + 1;
+          man_Z = man_Z + 1;
         end
       end
 
