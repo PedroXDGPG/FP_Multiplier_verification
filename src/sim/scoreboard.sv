@@ -39,7 +39,7 @@ class scoreboard extends uvm_scoreboard;
       if ((exp_X == 8'hFF && item.fp_X[22:0] == 0 && item.fp_Y == 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] == 0 && item.fp_X == 0)) begin
         // Zero * Infinity case
         expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
-      } else begin //corrected
+      end else begin
         expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h000000}; // Infinity
       end
     end else if (item.fp_X == 0 || item.fp_Y == 0) begin
