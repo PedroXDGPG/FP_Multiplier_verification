@@ -19,7 +19,8 @@ class scoreboard extends uvm_scoreboard;
     bit [7:0] exp_X, exp_Y, exp_Z;
     bit [23:0] sig_X, sig_Y;
     bit [47:0] sig_Z;
-    real result;
+    bit [47:0] product;
+    int i;
 
     // Extract sign, exponent, and significand
     sign_X = item.fp_X[31];
@@ -45,8 +46,16 @@ class scoreboard extends uvm_scoreboard;
       // Zero case
       expected_fp_Z = {sign_X ^ sign_Y, 8'h00, 23'h000000}; // Zero
     end else begin
-      // Perform the floating-point multiplication
-      sig_Z = sig_X * sig_Y;
+      // Perform the floating-point multiplication bit by bit
+      product = 0;
+      for (i = 0; i < 24; i++) begin
+        if (sig_Y[i]) begin
+          product = product + (sig_X << i);
+        end
+      end
+      sig_Z = product;
+
+      // Adjust exponent
       exp_Z = exp_X + exp_Y - 8'd127;
       sign_Z = sign_X ^ sign_Y;
 
