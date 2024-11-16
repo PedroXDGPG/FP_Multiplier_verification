@@ -19,7 +19,7 @@ class monitor extends uvm_monitor;
     forever begin
 
 
-          Item item = new();
+          Item item = Item::type_id::create("item");
           item.r_mode = vif.r_mode;
           item.fp_X = vif.fp_X;
           item.fp_Y = vif.fp_Y;
