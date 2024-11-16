@@ -13,150 +13,126 @@ class scoreboard extends uvm_scoreboard;
   endfunction
 
   virtual function write(Item item);
-    // Variables para almacenar resultados esperados
     bit [31:0] expected_fp_Z;
     bit expected_ovrf, expected_udrf;
-
-    // Componentes del número flotante
     bit sign_X, sign_Y, sign_Z;
     bit [7:0] exp_X, exp_Y, exp_Z;
-    bit [23:0] man_X, man_Y;      // 24 bits para evitar desbordamiento
-    bit [47:0] man_Z;             // 48 bits para evitar desbordamiento
-    bit [47:0] product;           
+    bit [23:0] sig_X, sig_Y;
+    bit [47:0] sig_Z;
+    bit [47:0] product;
+    bit guard, round, sticky;
     int i;
 
-    // Extraer signo, exponente y significando
+    // Extract sign, exponent, and significand
     sign_X = item.fp_X[31];
     sign_Y = item.fp_Y[31];
     exp_X = item.fp_X[30:23];
     exp_Y = item.fp_Y[30:23];
-    man_X = {1'b1, item.fp_X[22:0]};
-    man_Y = {1'b1, item.fp_Y[22:0]};
+    sig_X = {1'b1, item.fp_X[22:0]};
+    sig_Y = {1'b1, item.fp_Y[22:0]};
 
-    ////////////////////////////////// Verificar casos especiales //////////////////////////////////
+    // Check for special cases
     if ((exp_X == 8'hFF && item.fp_X[22:0] != 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] != 0)) begin
-      // Caso de NaN
-      expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h800000}; // NaN
-
-    end 
-    
-    else if ((exp_X == 8'hFF && item.fp_X[22:0] == 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] == 0)) begin
-      // Caso de infinito
-      if ((exp_X == 8'hFF && item.fp_X[22:0] == 0 && item.fp_Y == 0) || 
-          (exp_Y == 8'hFF && item.fp_Y[22:0] == 0 && item.fp_X == 0)) begin
-        // Caso de cero * infinito
-        expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h800000}; // NaN
-      end 
-      
-      else begin
-        expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h000000}; // Infinito
-      end 
-
-    end 
-    
-    else if (item.fp_X == 0 || item.fp_Y == 0) begin
-      // Caso de cero
-      expected_fp_Z = {sign_X ^ sign_Y, 8'h00, 23'h000000}; // Cero
-
-    end 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
-    else begin
-      // Realizar la multiplicación punto flotante bit a bit
+      // NaN case
+      expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
+    end else if ((exp_X == 8'hFF && item.fp_X[22:0] == 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] == 0)) begin
+      // Infinity case
+      if ((exp_X == 8'hFF && item.fp_X[22:0] == 0 && item.fp_Y == 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] == 0 && item.fp_X == 0)) begin
+        // Zero * Infinity case
+        expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
+      end else begin
+        expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h000000}; // Infinity
+      end
+    end else if (item.fp_X == 0 || item.fp_Y == 0) begin
+      // Zero case
+      expected_fp_Z = {sign_X ^ sign_Y, 8'h00, 23'h000000}; // Zero
+    end else begin
+      // Perform the floating-point multiplication bit by bit
       product = 0;
       for (i = 0; i < 24; i++) begin
-        if (man_Y[i]) begin
-          product = product + (man_X << i);
+        if (sig_Y[i]) begin
+          product = product + (sig_X << i);
         end
       end
-      man_Z = product;
+      sig_Z = product;
 
-      // Ajustar el exponente
+      // Adjust exponent
       exp_Z = exp_X + exp_Y - 8'd127;
       sign_Z = sign_X ^ sign_Y;
 
-      // Normalizar el resultado
-      if (man_Z[47]) begin
-        man_Z = man_Z >> 1;
+      // Normalize the result
+      if (sig_Z[47]) begin
+        sig_Z = sig_Z >> 1;
         exp_Z = exp_Z + 1;
-      end 
-      
-      else begin
-        while (man_Z[46] == 0 && exp_Z > 0) begin
-          man_Z = man_Z << 1;
+      end else begin
+        while (sig_Z[46] == 0 && exp_Z > 0) begin
+          sig_Z = sig_Z << 1;
           exp_Z = exp_Z - 1;
         end
       end
 
-      ///////////////////////////////// Aplicar modo de redondeo   /////////////////////////////////////
+      // Extract Guard, Round, and Sticky bits
+      guard = sig_Z[23];
+      round = sig_Z[22];
+      sticky = |sig_Z[21:0];
+
+      // Apply rounding mode
       case (item.r_mode)
         3'b000: begin
-          // Redondeo al más cercano, con empates hacia par
-          if (man_Z[23:0] > 24'h800000 || (man_Z[23:0] == 24'h800000 && man_Z[24])) begin
-            man_Z = man_Z + 1;
+          // Round to nearest, ties to even
+          if (guard && (round || sticky || sig_Z[24])) begin
+            sig_Z = sig_Z + 1;
           end
         end
-
         3'b001: begin
-          // Redondeo hacia cero (truncar)
-          // No se necesita acción adicional
+          // Round to zero (truncate)
+          // No additional action needed
         end
-
         3'b010: begin
-          // Redondeo hacia abajo (hacia -infinito)
-          if (sign_Z && man_Z[23:0] != 0) begin
-            man_Z = man_Z + 1;
+          // Round down (towards -infinity)
+          if (sign_Z && (guard || round || sticky)) begin
+            sig_Z = sig_Z + 1;
           end
         end
-
         3'b011: begin
-          // Redondeo hacia arriba (hacia +infinito)
-          if (!sign_Z && man_Z[23:0] != 0) begin
-            man_Z = man_Z + 1;
+          // Round up (towards +infinity)
+          if (!sign_Z && (guard || round || sticky)) begin
+            sig_Z = sig_Z + 1;
           end
         end
-
         3'b100: begin
-          // Redondeo al más cercano, empates hacia la magnitud máxima
-          if (man_Z[23:0] > 24'h800000 || (man_Z[23:0] == 24'h800000 && !sign_Z)) begin
-            man_Z = man_Z + 1;
+          // Round to nearest, ties to max magnitude
+          if (guard && (round || sticky || !sign_Z)) begin
+            sig_Z = sig_Z + 1;
           end
         end
-
         default: begin
-          // Caso por defecto si es necesario
+          // Default case if needed
         end
       endcase
 
-      // Manejar overflow y underflow
+      // Handle overflow and underflow
       if (exp_Z >= 8'hFF) begin
-        expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
+        expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinity
         expected_ovrf = 1;
         expected_udrf = 0;
-      end 
-      
-      else if (exp_Z <= 0) begin
-        expected_fp_Z = {sign_Z, 8'h00, 23'h000000}; // Cero
+      end else if (exp_Z <= 0) begin
+        expected_fp_Z = {sign_Z, 8'h00, 23'h000000}; // Zero
         expected_ovrf = 0;
         expected_udrf = 1;
-      end 
-      
-      else begin
-        expected_fp_Z = {sign_Z, exp_Z[7:0], man_Z[46:24]};
+      end else begin
+        expected_fp_Z = {sign_Z, exp_Z[7:0], sig_Z[46:24]};
         expected_ovrf = 0;
         expected_udrf = 0;
       end
     end
 
-    // Mostrar información del procesamiento
-    `uvm_info("SCBD", $sformatf("r_mode=%0h fp_X=%0h fp_Y=%0h fp_Z=%0h ovrf=%0h udrf=%0h", item.r_mode, item.fp_X, item.fp_Y, item.fp_Z, item.ovrf, item.udrf), UVM_LOW)
+    `uvm_info("SCBD", $sformatf("r_mode=%0d fp_X=%0h fp_Y=%0h fp_Z=%0h ovrf=%0d udrf=%0d", item.r_mode, item.fp_X, item.fp_Y, item.fp_Z, item.ovrf, item.udrf), UVM_LOW)
     
-    // Validar resultados
     if (item.fp_Z == expected_fp_Z && item.ovrf == expected_ovrf && item.udrf == expected_udrf) begin
-      `uvm_info("SCBD", $sformatf("PASS! fp_Z=%0h ovrf=%0h udrf=%0h", item.fp_Z, item.ovrf, item.udrf), UVM_HIGH)
-    end 
-    
-    else begin
-      `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0h (expected %0h) ovrf=%0h (expected %0h) udrf=%0h (expected %0h)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
+      `uvm_info("SCBD", $sformatf("PASS! fp_Z=%0h ovrf=%0d udrf=%0d", item.fp_Z, item.ovrf, item.udrf), UVM_HIGH)
+    end else begin
+      `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0h (expected %0h) ovrf=%0d (expected %0d) udrf=%0d (expected %0d)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
     end
   endfunction
 
