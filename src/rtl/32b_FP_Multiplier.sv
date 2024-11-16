@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module half(A, B, S, Cout);
   
   input A, B;
