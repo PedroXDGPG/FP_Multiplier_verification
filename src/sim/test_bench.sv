@@ -1,7 +1,7 @@
 //`timescale 1ns / 1ps
 `include "uvm_macros.svh"
 import uvm_pkg::*;
-`include "32b_FP_Multiplier.sv"
+`include "../rtl/32b_FP_Multiplier.sv"
 `include "interface.sv"
 `include "sequence_item.sv"
 `include "sequence.sv"
