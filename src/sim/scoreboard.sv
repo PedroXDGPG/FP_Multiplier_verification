@@ -116,12 +116,12 @@ class scoreboard extends uvm_scoreboard;
       end
     end
 
-    `uvm_info("SCBD", $sformatf("r_mode=%0d fp_X=%0d fp_Y=%0d fp_Z=%0d ovrf=%0d udrf=%0d", item.r_mode, item.fp_X, item.fp_Y, item.fp_Z, item.ovrf, item.udrf), UVM_LOW)
+    `uvm_info("SCBD", $sformatf("r_mode=%0h fp_X=%0h fp_Y=%0h fp_Z=%0h ovrf=%0h udrf=%0h", item.r_mode, item.fp_X, item.fp_Y, item.fp_Z, item.ovrf, item.udrf), UVM_LOW)
     
     if (item.fp_Z == expected_fp_Z && item.ovrf == expected_ovrf && item.udrf == expected_udrf) begin
-      `uvm_info("SCBD", $sformatf("PASS! fp_Z=%0d ovrf=%0d udrf=%0d", item.fp_Z, item.ovrf, item.udrf), UVM_HIGH)
+      `uvm_info("SCBD", $sformatf("PASS! fp_Z=%0h ovrf=%0h udrf=%0h", item.fp_Z, item.ovrf, item.udrf), UVM_HIGH)
     end else begin
-      `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0d (expected %0d) ovrf=%0d (expected %0d) udrf=%0d (expected %0d)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
+      `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0h (expected %0h) ovrf=%0h (expected %0h) udrf=%0h (expected %0h)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
     end
   endfunction
 
