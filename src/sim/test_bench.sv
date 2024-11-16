@@ -23,8 +23,8 @@ module tb;
                .in1(_if.r_mode),
                .in2(_if.fp_X),
                .in2(_if.fp_Y),
-               .out(_if.fp_Z)),
-               .out(_if.ovrf)),
+               .out(_if.fp_Z),
+               .out(_if.ovrf),
                .out(_if.udrf));
   initial begin
     clk <= 0;
