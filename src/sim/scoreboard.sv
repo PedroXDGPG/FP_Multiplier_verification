@@ -73,7 +73,7 @@ class scoreboard extends uvm_scoreboard;
 
       // Ajustar el exponente
       exp_Z = exp_X + exp_Y - 127;
-      exp_Z_num = exp_X + exp_Y;    // Exponente sin ajustar
+      exp_Z_num = exp_X + exp_Y - 127;    // Exponente sin ajustar
       // Mostrar exponentes de X y Y
       `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOLEXPONENTE RESULTADO: exp_Z_num=%0h ", exp_Z_num), UVM_LOW)
@@ -142,7 +142,7 @@ class scoreboard extends uvm_scoreboard;
       endcase
 
       ///////////////////////////////// Manejar overflow y underflow /////////////////////////////////
-      if (exp_Z_num >= 8'hFF + 127) begin
+      if (exp_Z_num >= 8'hFF) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
         expected_ovrf = 1;
         expected_udrf = 0;
