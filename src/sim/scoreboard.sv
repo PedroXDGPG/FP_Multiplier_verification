@@ -82,7 +82,7 @@ class scoreboard extends uvm_scoreboard;
       // Normalizar el resultado
       if (man_Z[47]) begin
         man_Z = man_Z >> 1;
-        exp_Z = exp_Z + 1;
+        //exp_Z = exp_Z + 1;
       end 
       
       // else begin
@@ -141,7 +141,7 @@ class scoreboard extends uvm_scoreboard;
       end 
       
       else begin
-        expected_fp_Z = {sign_Z, exp_Z, man_Z[46:24]};
+        expected_fp_Z = {sign_Z, exp_Z, man_Z[46:23]};
         expected_ovrf = 0;
         expected_udrf = 0;
       end
