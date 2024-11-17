@@ -71,7 +71,7 @@ class scoreboard extends uvm_scoreboard;
       end
 
       // Ajustar el exponente
-      exp_Z = exp_X + exp_Y - 8'd127;
+      exp_Z = exp_X + exp_Y - 127;
       sign_Z = sign_X ^ sign_Y;
 
       // Normalizar el resultado
