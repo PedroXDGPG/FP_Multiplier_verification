@@ -1,6 +1,6 @@
 class scoreboard extends uvm_scoreboard;
   `uvm_component_utils(scoreboard)
-  
+
   function new(string name="scoreboard", uvm_component parent=null);
     super.new(name, parent);
   endfunction
@@ -20,10 +20,9 @@ class scoreboard extends uvm_scoreboard;
     // Componentes del número flotante
     bit sign_X, sign_Y, sign_Z;
     bit [7:0] exp_X, exp_Y, exp_Z;
-    bit [23:0] man_X, man_Y;       // 24 bits para evitar desbordamiento
-    bit [47:0] man_Z;              // 48 bits para evitar desbordamiento
-    bit [47:0] product;   
-    bit guard, round, sticky;    // Definir los bits guard, round y sticky
+    bit [23:0] man_X, man_Y;
+    bit [47:0] man_Z;
+    bit [2:0] round_bit, guard_bit, sticky_bit;
     int i;
 
     // Extraer signo, exponente y significando
@@ -34,7 +33,7 @@ class scoreboard extends uvm_scoreboard;
     man_X = {1'b1, item.fp_X[22:0]};
     man_Y = {1'b1, item.fp_Y[22:0]};
 
-    ////////////////////////////////// Verificar casos especiales //////////////////////////////////
+    // Verificar casos especiales
     if ((exp_X == 8'hFF && item.fp_X[22:0] != 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] != 0)) begin
       // Caso de NaN
       expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
@@ -60,16 +59,15 @@ class scoreboard extends uvm_scoreboard;
       expected_fp_Z = {sign_X ^ sign_Y, 8'h00, 23'h000000}; // Cero
 
     end 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////
+    
     else begin
       // Realizar la multiplicación punto flotante bit a bit
-      product = 0;
+      man_Z = 0;
       for (i = 0; i < 24; i++) begin
         if (man_Y[i]) begin
-          product = product + (man_X << i);
+          man_Z = man_Z + (man_X << i);
         end
       end
-      man_Z = product;
 
       // Ajustar el exponente
       exp_Z = exp_X + exp_Y - 8'd127;
@@ -88,49 +86,46 @@ class scoreboard extends uvm_scoreboard;
         end
       end
 
-        ///////////////////////////////// Aplicar modo de redondeo   /////////////////////////////////////
-      guard  = man_Z[23];
-      round  = man_Z[22];
-      sticky = man_Z[21]; // Usamos exclusivamente el bit 21 como sticky
+      // Asignar los 3 bits de redondeo: Guard, Round, Sticky
+      guard_bit = man_Z[23];     // 24º bit
+      round_bit = man_Z[24];     // 25º bit
+      sticky_bit = man_Z[25];    // 26º bit
 
+      // Redondeo de acuerdo al r_mode
       case (item.r_mode)
-        3'b000: begin
-          // Round to nearest, ties to even
-          if ((round && (guard || sticky)) || (round && !guard && !sticky && man_Z[24])) begin
+        3'b000: begin // Round to nearest, ties to even (Redondeo al más cercano, empates hacia par)
+          if (round_bit == 1 && (guard_bit == 1 || sticky_bit == 1)) begin
             man_Z = man_Z + 1;
           end
         end
 
-        3'b001: begin
-          // Round to zero (truncate)
-          // No se necesita acción adicional, ya que se ignoran los bits guard, round y sticky.
+        3'b001: begin // Round to zero (Redondeo hacia cero)
+          // No se necesita acción adicional, simplemente truncar
         end
 
-        3'b010: begin
-          // Round towards −∞
-          if (sign_Z && (guard || sticky)) begin
+        3'b010: begin // Round towards −∞ (Redondeo hacia -infinito)
+          if (sign_Z == 1 && (round_bit == 1 || guard_bit == 1 || sticky_bit == 1)) begin
             man_Z = man_Z + 1;
           end
         end
 
-        3'b011: begin
-          // Round towards +∞
-          if (!sign_Z && (guard || sticky)) begin
+        3'b011: begin // Round towards +∞ (Redondeo hacia +infinito)
+          if (sign_Z == 0 && (round_bit == 1 || guard_bit == 1 || sticky_bit == 1)) begin
             man_Z = man_Z + 1;
           end
         end
 
-        3'b100: begin
-          // Round to nearest, ties away from zero
-          if ((round && (guard || sticky)) || (round && !guard && !sticky)) begin
+        3'b100: begin // Round to nearest, ties away from zero (Redondeo al más cercano, empates hacia la magnitud máxima)
+          if (round_bit == 1 && (guard_bit == 0 || sticky_bit == 1)) begin
             man_Z = man_Z + 1;
           end
         end
 
         default: begin
-          // Caso por defecto si se recibe un modo inválido.
+          // Caso por defecto si es necesario
         end
       endcase
+
       // Manejar overflow y underflow
       if (exp_Z >= 8'hFF) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
