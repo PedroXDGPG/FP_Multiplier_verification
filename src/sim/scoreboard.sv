@@ -141,7 +141,7 @@ class scoreboard extends uvm_scoreboard;
       end 
       
       else begin
-        expected_fp_Z = {sign_Z, exp_Z[7:0], man_Z[46:23]};
+        expected_fp_Z = {sign_Z, exp_Z, man_Z[46:24]};
         expected_ovrf = 0;
         expected_udrf = 0;
       end
