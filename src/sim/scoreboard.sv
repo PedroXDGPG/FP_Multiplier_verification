@@ -178,6 +178,6 @@ class scoreboard extends uvm_scoreboard;
     `uvm_info("SCBD", $sformatf("DUT: sign=%0b exp=%0b man=%0b", item.fp_Z[31], item.fp_Z[30:23], item.fp_Z[22:0]), UVM_HIGH)
     `uvm_info("SCBD", $sformatf("Golden: sign=%0b exp=%0b man=%0b", expected_fp_Z[31], expected_fp_Z[30:23], expected_fp_Z[22:0]), UVM_HIGH)
     // Mostrar exponentes de X y Y
-    `uvm_info("SCBD", $sformatf("Exponentes: exp_X=%0h exp_Y=%0h", item.fp_X[30:23], item.fp_Y[30:23]), UVM_HIGH)
+    `uvm_info("SCBD", $sformatf("Exponentes: exp_X=%0h exp_Y=%0h", item.fp_X[30:23], item.fp_Y[30:23]), UVM_LOW)
  endfunction
 endclass
