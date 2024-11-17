@@ -153,10 +153,10 @@ class scoreboard extends uvm_scoreboard;
         expected_fp_Z = {sign_Z, exp_Z, man_Z[45:23]};
         expected_ovrf = 0;
         expected_udrf = 0;
-        `uvm_info("SCBD", $sformatf("sign: exp_Z=%0h ", sign_Z), UVM_HIGH)
-        `uvm_info("SCBD", $sformatf("exp_Z: exp_Z=%0h ", exp_Z), UVM_HIGH)
-        `uvm_info("SCBD", $sformatf("man_Z: exp_Z=%0h ", man_Z[45:23]), UVM_HIGH)
-        `uvm_info("SCBD", $sformatf("expected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_HIGH)
+        `uvm_info("SCBD", $sformatf("sign: exp_Z=%0h ", sign_Z), UVM_LOW)
+        `uvm_info("SCBD", $sformatf("exp_Z: exp_Z=%0h ", exp_Z), UVM_LOW)
+        `uvm_info("SCBD", $sformatf("man_Z: exp_Z=%0h ", man_Z[45:23]), UVM_LOW)
+        `uvm_info("SCBD", $sformatf("expected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
       end
     end
     ///////////////////////////////////////////////////////////////////////////////////////////////////
