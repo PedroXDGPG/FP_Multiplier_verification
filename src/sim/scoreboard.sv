@@ -75,7 +75,7 @@ class scoreboard extends uvm_scoreboard;
       sign_Z = sign_X ^ sign_Y;
 
       // Normalizar el resultado
-      if (man_Z[47]) begin
+      if (man_Z[46]) begin
         man_Z = man_Z >> 1;
         exp_Z = exp_Z + 1;
       end 
