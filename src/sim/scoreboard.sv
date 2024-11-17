@@ -74,6 +74,11 @@ class scoreboard extends uvm_scoreboard;
       exp_Z = exp_X + exp_Y - 127;
       sign_Z = sign_X ^ sign_Y;
 
+      // Asignar los 3 bits de redondeo: Guard, Round, Sticky
+      guard_bit   = man_Z[22];     
+      round_bit   = man_Z[21];     
+      sticky_bit  = |man_Z[20:0];  
+
       // Normalizar el resultado
       if (man_Z[47]) begin
         man_Z = man_Z >> 1;
@@ -86,11 +91,6 @@ class scoreboard extends uvm_scoreboard;
       //     exp_Z = exp_Z - 1;
       //   end
       // end
-
-      // Asignar los 3 bits de redondeo: Guard, Round, Sticky
-      guard_bit   = man_Z[22];     
-      round_bit   = man_Z[21];     
-      sticky_bit  = |man_Z[20:0];  
 
       /////////////////////////////////// Redondeo de acuerdo al r_mode ////////////////////////////////////
       case (item.r_mode)
