@@ -104,19 +104,19 @@ class scoreboard extends uvm_scoreboard;
         end
 
         3'b010: begin // Round towards −∞ (Redondeo hacia -infinito)
-          if (sign_Z == 1 && (round_bit == 1 || guard_bit == 1 || sticky_bit == 1)) begin
+          if (sign_Z == 1) begin
             man_Z = man_Z + 1;
           end
         end
 
         3'b011: begin // Round towards +∞ (Redondeo hacia +infinito)
-          if (sign_Z == 0 && (round_bit == 1 || guard_bit == 1 || sticky_bit == 1)) begin
+          if (sign_Z == 0) begin
             man_Z = man_Z + 1;
           end
         end
 
         3'b100: begin // Round to nearest, ties away from zero (Redondeo al más cercano, empates hacia la magnitud máxima)
-          if (round_bit == 1 && (guard_bit == 0 || sticky_bit == 1)) begin
+          if (round_bit == 1 ) begin
             man_Z = man_Z + 1;
           end
         end
