@@ -158,6 +158,7 @@ class scoreboard extends uvm_scoreboard;
         `uvm_info("SCBD", $sformatf("YAPORFAVOR1: exp_Z=%0h ", sign_Z), UVM_LOW)
         `uvm_info("SCBD", $sformatf("YAPORFAVOR2: exp_Z=%0h ", exp_Z), UVM_LOW)
         `uvm_info("SCBD", $sformatf("YAPORFAVOR3: exp_Z=%0h ", man_Z[46:23]), UVM_LOW)
+        `uvm_info("SCBD", $sformatf("EXPECTED: exp_Z=%0h ", man_Z[46:23]), UVM_LOW)
       end
     end
     ///////////////////////////////////////////////////////////////////////////////////////////////////
