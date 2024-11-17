@@ -155,6 +155,7 @@ class scoreboard extends uvm_scoreboard;
         expected_fp_Z = {sign_Z, exp_Z, man_Z[46:23]};
         expected_ovrf = 0;
         expected_udrf = 0;
+        `uvm_info("SCBD", $sformatf("NOCOMPA1: exp_Z=%0h ", expected_fp_Z), UVM_LOW)
       end
     end
     ///////////////////////////////////////////////////////////////////////////////////////////////////
