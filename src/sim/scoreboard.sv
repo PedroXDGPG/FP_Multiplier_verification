@@ -72,6 +72,11 @@ class scoreboard extends uvm_scoreboard;
 
       // Ajustar el exponente
       exp_Z = exp_X + exp_Y - 127;
+
+      // Mostrar exponentes de X y Y
+      `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
+ 
+
       sign_Z = sign_X ^ sign_Y;
 
       // Asignar los 3 bits de redondeo: Guard, Round, Sticky
