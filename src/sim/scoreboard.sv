@@ -93,12 +93,12 @@ class scoreboard extends uvm_scoreboard;
 
       end 
       
-      // else begin
-      //   while (man_Z[46] == 0 && exp_Z > 0) begin
-      //     man_Z = man_Z << 1;
-      //     exp_Z = exp_Z - 1;
-      //   end
-      // end
+      else begin
+        while (man_Z[46] == 0 && exp_Z > 0) begin
+          man_Z = man_Z << 1;
+          exp_Z = exp_Z - 1;
+        end
+      end
 
       /////////////////////////////////// Redondeo de acuerdo al r_mode ////////////////////////////////////
       case (item.r_mode)
@@ -137,10 +137,6 @@ class scoreboard extends uvm_scoreboard;
 
       ///////////////////////////////// Manejar overflow y underflow /////////////////////////////////
       if (exp_Z >= 8'hFF) begin
-        `uvm_info("SCBD", $sformatf("sign: exp_Z=%0h ", sign_Z), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("exp_Z: exp_Z=%0h ", exp_Z), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("man_Z: exp_Z=%0h ", man_Z[45:23]), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("expected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
         expected_ovrf = 1;
         expected_udrf = 0;
