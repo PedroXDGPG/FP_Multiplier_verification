@@ -94,12 +94,12 @@ class scoreboard extends uvm_scoreboard;
 
       end 
       
-      else begin
-        while (man_Z[46] == 0 && exp_Z > 0) begin
-          man_Z = man_Z << 1;
-          exp_Z = exp_Z - 1;
-        end
-      end
+      // else begin
+      //   while (man_Z[46] == 0 && exp_Z > 0) begin
+      //     man_Z = man_Z << 1;
+      //     exp_Z = exp_Z - 1;
+      //   end
+      // end
 
       /////////////////////////////////// Redondeo de acuerdo al r_mode ////////////////////////////////////
       case (item.r_mode)
