@@ -171,6 +171,9 @@ class scoreboard extends uvm_scoreboard;
       `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0h (expected %0h) ovrf=%0h (expected %0h) udrf=%0h (expected %0h)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
     end
     // Mostrar signos, exponentes y mantisas del golden reference y del DUT
+    // Mostrar exponentes de X y Y
+    `uvm_info("SCBD", $sformatf("QUEPEXEXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
+ 
     `uvm_info("SCBD", $sformatf("DUT: sign=%0h exp=%0h man=%0h", item.fp_Z[31], item.fp_Z[30:23], item.fp_Z[22:0]), UVM_LOW)
     `uvm_info("SCBD", $sformatf("Golden: sign=%0h exp=%0h man=%0h", expected_fp_Z[31], expected_fp_Z[30:23], expected_fp_Z[22:0]), UVM_LOW)
     // Mostrar exponentes de X y Y
