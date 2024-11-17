@@ -74,11 +74,11 @@ class scoreboard extends uvm_scoreboard;
       exp_Z = exp_X + exp_Y - 127;
 
       // Mostrar exponentes de X y Y
-      `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
+      `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_HIGH)
  
 
       sign_Z = sign_X ^ sign_Y;
-      `uvm_info("SCBD", $sformatf("SIGNO RESULTADO: exp_Z=%0h ", sign_Z), UVM_LOW)
+      `uvm_info("SCBD", $sformatf("SIGNO RESULTADO: sign_Z=%0h ", sign_Z), UVM_HIGH)
       // Asignar los 3 bits de redondeo: Guard, Round, Sticky
       guard_bit   = man_Z[22];     
       round_bit   = man_Z[21];     
@@ -89,7 +89,7 @@ class scoreboard extends uvm_scoreboard;
         man_Z = man_Z >> 1;
         exp_Z = exp_Z + 1;
       // Mostrar exponentes de X y Y
-      `uvm_info("SCBD", $sformatf("NORMALIZADO EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
+      `uvm_info("SCBD", $sformatf("NORMALIZADO EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_HIGH)
 
       end 
       
@@ -150,15 +150,13 @@ class scoreboard extends uvm_scoreboard;
       
       else begin
               // Mostrar exponentes de X y Y
-        `uvm_info("SCBD", $sformatf("YESCOMPA1: exp_Z=%0h ", exp_Z), UVM_LOW)
-
         expected_fp_Z = {sign_Z, exp_Z, man_Z[45:23]};
         expected_ovrf = 0;
         expected_udrf = 0;
-        `uvm_info("SCBD", $sformatf("YAPORFAVOR1: exp_Z=%0h ", sign_Z), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("YAPORFAVOR2: exp_Z=%0h ", exp_Z), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("YAPORFAVOR3: exp_Z=%0h ", man_Z[45:23]), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("EXPECTED: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
+        `uvm_info("SCBD", $sformatf("sign: exp_Z=%0h ", sign_Z), UVM_HIGH)
+        `uvm_info("SCBD", $sformatf("exp_Z: exp_Z=%0h ", exp_Z), UVM_HIGH)
+        `uvm_info("SCBD", $sformatf("man_Z: exp_Z=%0h ", man_Z[45:23]), UVM_HIGH)
+        `uvm_info("SCBD", $sformatf("expected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_HIGH)
       end
     end
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,12 +172,10 @@ class scoreboard extends uvm_scoreboard;
       `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0h (expected %0h) ovrf=%0h (expected %0h) udrf=%0h (expected %0h)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
     end
     // Mostrar signos, exponentes y mantisas del golden reference y del DUT
-    // Mostrar exponentes de X y Y
-    `uvm_info("SCBD", $sformatf("QUEPEXEXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
  
-    `uvm_info("SCBD", $sformatf("DUT: sign=%0b exp=%0b man=%0b", item.fp_Z[31], item.fp_Z[30:23], item.fp_Z[22:0]), UVM_LOW)
-    `uvm_info("SCBD", $sformatf("Golden: sign=%0b exp=%0b man=%0b", expected_fp_Z[31], expected_fp_Z[30:23], expected_fp_Z[22:0]), UVM_LOW)
+    `uvm_info("SCBD", $sformatf("DUT: sign=%0b exp=%0b man=%0b", item.fp_Z[31], item.fp_Z[30:23], item.fp_Z[22:0]), UVM_HIGH)
+    `uvm_info("SCBD", $sformatf("Golden: sign=%0b exp=%0b man=%0b", expected_fp_Z[31], expected_fp_Z[30:23], expected_fp_Z[22:0]), UVM_HIGH)
     // Mostrar exponentes de X y Y
-    `uvm_info("SCBD", $sformatf("Exponentes: exp_X=%0h exp_Y=%0h", item.fp_X[30:23], item.fp_Y[30:23]), UVM_LOW)
+    `uvm_info("SCBD", $sformatf("Exponentes: exp_X=%0h exp_Y=%0h", item.fp_X[30:23], item.fp_Y[30:23]), UVM_HIGH)
  endfunction
 endclass
