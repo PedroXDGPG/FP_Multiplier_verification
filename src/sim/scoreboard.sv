@@ -80,7 +80,7 @@ class scoreboard extends uvm_scoreboard;
       sticky_bit  = |man_Z[20:0];  
 
       // Normalizar el resultado
-      while (man_Z[47]) begin
+      if (man_Z[47]) begin
         man_Z = man_Z >> 1;
         exp_Z = exp_Z + 1;
       end 
@@ -158,6 +158,8 @@ class scoreboard extends uvm_scoreboard;
     else begin
       `uvm_error("SCBD", $sformatf("ERROR! fp_Z=%0h (expected %0h) ovrf=%0h (expected %0h) udrf=%0h (expected %0h)", item.fp_Z, expected_fp_Z, item.ovrf, expected_ovrf, item.udrf, expected_udrf))
     end
+    // Mostrar signos, exponentes y mantisas del golden reference y del DUT
+    `uvm_info("SCBD", $sformatf("DUT: sign=%0h exp=%0h man=%0h", item.fp_Z[31], item.fp_Z[30:23], item.fp_Z[22:0]), UVM_LOW)
+    `uvm_info("SCBD", $sformatf("Golden: sign=%0h exp=%0h man=%0h", expected_fp_Z[31], expected_fp_Z[30:23], expected_fp_Z[22:0]), UVM_LOW)
   endfunction
-
 endclass
