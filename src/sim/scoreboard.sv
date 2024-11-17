@@ -78,7 +78,7 @@ class scoreboard extends uvm_scoreboard;
  
 
       sign_Z = sign_X ^ sign_Y;
-
+      `uvm_info("SCBD", $sformatf("SIGNO RESULTADO: exp_Z=%0h ", sign_Z), UVM_LOW)
       // Asignar los 3 bits de redondeo: Guard, Round, Sticky
       guard_bit   = man_Z[22];     
       round_bit   = man_Z[21];     
