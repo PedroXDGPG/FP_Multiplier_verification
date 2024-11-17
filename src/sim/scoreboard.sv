@@ -88,6 +88,9 @@ class scoreboard extends uvm_scoreboard;
       while (man_Z[47]) begin
         man_Z = man_Z >> 1;
         exp_Z = exp_Z + 1;
+      // Mostrar exponentes de X y Y
+      `uvm_info("SCBD", $sformatf("NORMALIZADO EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
+
       end 
       
       // else begin
