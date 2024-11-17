@@ -90,6 +90,7 @@ class scoreboard extends uvm_scoreboard;
         exp_Z = exp_Z + 1;
       // Mostrar exponentes de X y Y
       `uvm_info("SCBD", $sformatf("NORMALIZADO EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_HIGH)
+      `uvm_info("SCBD", $sformatf("NORMALIZADO MANTISA RESULTADO: man_Z=%0h ", man_Z), UVM_LOW)
 
       end 
       
@@ -115,6 +116,7 @@ class scoreboard extends uvm_scoreboard;
         3'b010: begin // Round towards −∞ (Redondeo hacia -infinito)
           if (sign_Z == 1) begin
             man_Z = man_Z + 1;
+      `uvm_info("SCBD", $sformatf("MANTISA RESULTADO ROUND: man_Z=%0h ", man_Z), UVM_LOW)
           end
         end
 
