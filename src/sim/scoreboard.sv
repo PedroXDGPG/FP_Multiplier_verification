@@ -88,49 +88,49 @@ class scoreboard extends uvm_scoreboard;
         end
       end
 
-      ///////////////////////////////// Aplicar modo de redondeo   /////////////////////////////////////
-    guard  = man_Z[23];
-    round  = man_Z[22];
-    sticky = man_Z[21]; // Usamos exclusivamente el bit 21 como sticky
+        ///////////////////////////////// Aplicar modo de redondeo   /////////////////////////////////////
+      guard  = man_Z[23];
+      round  = man_Z[22];
+      sticky = man_Z[21]; // Usamos exclusivamente el bit 21 como sticky
 
-    case (item.r_mode)
-      3'b000: begin
-        // Round to nearest, ties to even
-        if ((round && (guard || sticky)) || (round && !guard && !sticky && man_Z[24])) begin
-          man_Z = man_Z + 1;
+      case (item.r_mode)
+        3'b000: begin
+          // Round to nearest, ties to even
+          if ((round && (guard || sticky)) || (round && !guard && !sticky && man_Z[24])) begin
+            man_Z = man_Z + 1;
+          end
         end
-      end
 
-      3'b001: begin
-        // Round to zero (truncate)
-        // No se necesita acción adicional, ya que se ignoran los bits guard, round y sticky.
-      end
-
-      3'b010: begin
-        // Round towards −∞
-        if (sign_Z && (guard || sticky)) begin
-          man_Z = man_Z + 1;
+        3'b001: begin
+          // Round to zero (truncate)
+          // No se necesita acción adicional, ya que se ignoran los bits guard, round y sticky.
         end
-      end
 
-      3'b011: begin
-        // Round towards +∞
-        if (!sign_Z && (guard || sticky)) begin
-          man_Z = man_Z + 1;
+        3'b010: begin
+          // Round towards −∞
+          if (sign_Z && (guard || sticky)) begin
+            man_Z = man_Z + 1;
+          end
         end
-      end
 
-      3'b100: begin
-        // Round to nearest, ties away from zero
-        if ((round && (guard || sticky)) || (round && !guard && !sticky)) begin
-          man_Z = man_Z + 1;
+        3'b011: begin
+          // Round towards +∞
+          if (!sign_Z && (guard || sticky)) begin
+            man_Z = man_Z + 1;
+          end
         end
-      end
 
-      default: begin
-        // Caso por defecto si se recibe un modo inválido.
-      end
-    endcase
+        3'b100: begin
+          // Round to nearest, ties away from zero
+          if ((round && (guard || sticky)) || (round && !guard && !sticky)) begin
+            man_Z = man_Z + 1;
+          end
+        end
+
+        default: begin
+          // Caso por defecto si se recibe un modo inválido.
+        end
+      endcase
       // Manejar overflow y underflow
       if (exp_Z >= 8'hFF) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
