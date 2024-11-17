@@ -20,6 +20,7 @@ class scoreboard extends uvm_scoreboard;
     // Componentes del número flotante
     bit sign_X, sign_Y, sign_Z;
     bit [7:0] exp_X, exp_Y, exp_Z, exp_Z_num;
+    bit [8:0] exp_Z_num;
     bit [23:0] man_X, man_Y;
     bit [47:0] man_Z;
     bit        round_bit, guard_bit, sticky_bit;
