@@ -22,7 +22,7 @@ class scoreboard extends uvm_scoreboard;
     bit [7:0] exp_X, exp_Y, exp_Z;
     bit [23:0] man_X, man_Y;
     bit [47:0] man_Z;
-    bit [2:0] round_bit, guard_bit, sticky_bit;
+    bit        round_bit, guard_bit, sticky_bit;
     int i;
 
     // Extraer signo, exponente y significando
@@ -33,7 +33,7 @@ class scoreboard extends uvm_scoreboard;
     man_X = {1'b1, item.fp_X[22:0]};
     man_Y = {1'b1, item.fp_Y[22:0]};
 
-    // Verificar casos especiales
+    /////////////////////////////////// Verificar casos especiales /////////////////////////////////
     if ((exp_X == 8'hFF && item.fp_X[22:0] != 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] != 0)) begin
       // Caso de NaN
       expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
@@ -59,9 +59,10 @@ class scoreboard extends uvm_scoreboard;
       expected_fp_Z = {sign_X ^ sign_Y, 8'h00, 23'h000000}; // Cero
 
     end 
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     else begin
-      // Realizar la multiplicación punto flotante bit a bit
+      /////////////////////////////////// Realizar la multiplicación punto flotante bit a bit /////////////////////////////////
       man_Z = 0;
       for (i = 0; i < 24; i++) begin
         if (man_Y[i]) begin
@@ -87,11 +88,11 @@ class scoreboard extends uvm_scoreboard;
       end
 
       // Asignar los 3 bits de redondeo: Guard, Round, Sticky
-      guard_bit = man_Z[23];     // 24º bit
-      round_bit = man_Z[24];     // 25º bit
-      sticky_bit = man_Z[25];    // 26º bit
+      guard_bit = man_Z[23];     
+      round_bit = man_Z[22];     
+      sticky_bit = man_Z[21];    
 
-      // Redondeo de acuerdo al r_mode
+      /////////////////////////////////// Redondeo de acuerdo al r_mode ////////////////////////////////////
       case (item.r_mode)
         3'b000: begin // Round to nearest, ties to even (Redondeo al más cercano, empates hacia par)
           if (round_bit == 1 && (guard_bit == 1 || sticky_bit == 1)) begin
@@ -116,7 +117,7 @@ class scoreboard extends uvm_scoreboard;
         end
 
         3'b100: begin // Round to nearest, ties away from zero (Redondeo al más cercano, empates hacia la magnitud máxima)
-          if (round_bit == 1 ) begin
+          if (round_bit == 1) begin
             man_Z = man_Z + 1;
           end
         end
@@ -126,7 +127,7 @@ class scoreboard extends uvm_scoreboard;
         end
       endcase
 
-      // Manejar overflow y underflow
+      ///////////////////////////////// Manejar overflow y underflow /////////////////////////////////
       if (exp_Z >= 8'hFF) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
         expected_ovrf = 1;
@@ -145,7 +146,7 @@ class scoreboard extends uvm_scoreboard;
         expected_udrf = 0;
       end
     end
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
     // Mostrar información del procesamiento
     `uvm_info("SCBD", $sformatf("r_mode=%0h fp_X=%0h fp_Y=%0h fp_Z=%0h ovrf=%0h udrf=%0h", item.r_mode, item.fp_X, item.fp_Y, item.fp_Z, item.ovrf, item.udrf), UVM_LOW)
     
