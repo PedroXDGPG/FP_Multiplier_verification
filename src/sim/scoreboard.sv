@@ -115,8 +115,8 @@ class scoreboard extends uvm_scoreboard;
 
         3'b010: begin // Round towards −∞ (Redondeo hacia -infinito)
           if (sign_Z == 1) begin
-            man_Z = man_Z + 1;
-      `uvm_info("SCBD", $sformatf("MANTISA RESULTADO ROUND: man_Z=%0h ", man_Z), UVM_LOW)
+            man_Z[45:23] = man_Z[45:23] + 1;
+            `uvm_info("SCBD", $sformatf("MANTISA RESULTADO ROUND: man_Z=%0h ", man_Z), UVM_LOW)
           end
         end
 
