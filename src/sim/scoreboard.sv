@@ -152,12 +152,12 @@ class scoreboard extends uvm_scoreboard;
               // Mostrar exponentes de X y Y
         `uvm_info("SCBD", $sformatf("YESCOMPA1: exp_Z=%0h ", exp_Z), UVM_LOW)
 
-        expected_fp_Z = {sign_Z, exp_Z, man_Z[46:23]};
+        expected_fp_Z = {sign_Z, exp_Z, man_Z[46:24]};
         expected_ovrf = 0;
         expected_udrf = 0;
         `uvm_info("SCBD", $sformatf("YAPORFAVOR1: exp_Z=%0h ", sign_Z), UVM_LOW)
         `uvm_info("SCBD", $sformatf("YAPORFAVOR2: exp_Z=%0h ", exp_Z), UVM_LOW)
-        `uvm_info("SCBD", $sformatf("YAPORFAVOR3: exp_Z=%0h ", man_Z[46:23]), UVM_LOW)
+        `uvm_info("SCBD", $sformatf("YAPORFAVOR3: exp_Z=%0h ", man_Z[46:24]), UVM_LOW)
         `uvm_info("SCBD", $sformatf("EXPECTED: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
       end
     end
