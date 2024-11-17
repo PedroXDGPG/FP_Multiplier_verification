@@ -19,7 +19,7 @@ class scoreboard extends uvm_scoreboard;
 
     // Componentes del número flotante
     bit sign_X, sign_Y, sign_Z;
-    bit [7:0] exp_X, exp_Y, exp_Z;
+    bit [7:0] exp_X, exp_Y, exp_Z, exp_Z_num;
     bit [23:0] man_X, man_Y;
     bit [47:0] man_Z;
     bit        round_bit, guard_bit, sticky_bit;
@@ -72,7 +72,7 @@ class scoreboard extends uvm_scoreboard;
 
       // Ajustar el exponente
       exp_Z = exp_X + exp_Y - 127;
-      exp_Z_num = exp_X + exp_Y;
+      exp_Z_num = exp_X + exp_Y;    // Exponente sin ajustar
       // Mostrar exponentes de X y Y
       `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
  
