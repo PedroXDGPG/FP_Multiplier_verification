@@ -85,7 +85,7 @@ class scoreboard extends uvm_scoreboard;
       sticky_bit  = |man_Z[20:0];  
 
       // Normalizar el resultado
-      while (man_Z[47]) begin
+      if (man_Z[47]) begin
         man_Z = man_Z >> 1;
         exp_Z = exp_Z + 1;
       // Mostrar exponentes de X y Y
