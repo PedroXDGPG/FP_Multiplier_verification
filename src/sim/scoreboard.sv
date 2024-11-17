@@ -74,7 +74,7 @@ class scoreboard extends uvm_scoreboard;
       exp_Z = exp_X + exp_Y - 127;
 
       // Mostrar exponentes de X y Y
-      `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_HIGH)
+      `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
  
 
       sign_Z = sign_X ^ sign_Y;
@@ -89,7 +89,7 @@ class scoreboard extends uvm_scoreboard;
         man_Z = man_Z >> 1;
         exp_Z = exp_Z + 1;
       // Mostrar exponentes de X y Y
-      `uvm_info("SCBD", $sformatf("NORMALIZADO EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_HIGH)
+      `uvm_info("SCBD", $sformatf("NORMALIZADO EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
       `uvm_info("SCBD", $sformatf("NORMALIZADO MANTISA RESULTADO: man_Z=%0h ", man_Z), UVM_LOW)
 
       end 
