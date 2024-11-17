@@ -142,7 +142,7 @@ class scoreboard extends uvm_scoreboard;
       endcase
 
       ///////////////////////////////// Manejar overflow y underflow /////////////////////////////////
-      if (exp_Z_num >= 8'hFF) begin
+      if (exp_Z_num >= 255) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
         expected_ovrf = 1;
         expected_udrf = 0;
