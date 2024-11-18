@@ -19,7 +19,7 @@ class scoreboard extends uvm_scoreboard;
 
     // Componentes del número flotante
     bit sign_X, sign_Y, sign_Z;
-    bit [7:0] exp_X, exp_Y, exp_Z;
+    bit [7:0] exp_X, exp_Y, exp_Z, exp_Z_no_sum;
     bit [8:0] exp_Z_num;
     bit [23:0] man_X, man_Y;
     bit [47:0] man_Z;
@@ -73,10 +73,10 @@ class scoreboard extends uvm_scoreboard;
 
       // Ajustar el exponente
       exp_Z = exp_X + exp_Y - 127;
-      exp_Z_num = exp_X + exp_Y - 127;    // Exponente sin ajustar
+      exp_Z_num = exp_X + exp_Y - 127;    // Exponente con 9 bits
+      exp_Z_no_sum = exp_X + exp_Y;      // Exponente para considerar underflow 
       // Mostrar exponentes de X y Y
       `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
-      `uvm_info("SCBD", $sformatf("ASDFAFSDASDFEXPONENTE RESULTADO: exp_SUIMA=%0h ", exp_X + exp_Y), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOLEXPONENTE RESULTADO: exp_Z_num=%0h ", exp_Z_num), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOL: exp_X=%0h ", exp_X), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOL: exp_Y=%0h ", exp_Y), UVM_LOW)
@@ -149,7 +149,7 @@ class scoreboard extends uvm_scoreboard;
         expected_udrf = 0;
       end 
       
-      else if (exp_Z <= 0) begin
+      else if (exp_Z_no_sum <= 127) begin
         expected_fp_Z = {sign_Z, 8'h00, 23'h000000}; // Cero
         expected_ovrf = 0;
         expected_udrf = 1;
