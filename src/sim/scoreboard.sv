@@ -74,11 +74,11 @@ class scoreboard extends uvm_scoreboard;
       // Ajustar el exponente
       exp_Z = exp_X + exp_Y - 127;
       exp_Z_num = exp_X + exp_Y - 127;    // Exponente con 9 bits
-      exp_Z_no_sum = exp_X + exp_Y;      // Exponente para considerar underflow 
+      exp_Z_no_sum = exp_X + exp_Y;      // Exponente para considerar underflow sin complemento a 2
       // Mostrar exponentes de X y Y
       `uvm_info("SCBD", $sformatf("EXPONENTE RESULTADO: exp_Z=%0h ", exp_Z), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOLEXPONENTE RESULTADO: exp_Z_num=%0h ", exp_Z_num), UVM_LOW)
-      `uvm_info("SCBD", $sformatf("LOLOLOLOLEXPONENTE RESULTADO: exp_Z_no_sum=%0h ", exp_Z_no_sum), UVM_LOW)
+      `uvm_info("SCBD", $sformatf("LOLOLOLOLEXPONENTE RESULTADO: exp_Z_no_sum=%0d ", exp_Z_no_sum), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOL: exp_X=%0h ", exp_X), UVM_LOW)
       `uvm_info("SCBD", $sformatf("LOLOLOLOL: exp_Y=%0h ", exp_Y), UVM_LOW)
  
@@ -142,7 +142,7 @@ class scoreboard extends uvm_scoreboard;
           // Caso por defecto si es necesario
         end
       endcase
-
+      `uvm_info("SCBD", $sformatf("EN IFS RESULTADO: exp_Z_no_sum=%0d ", exp_Z_no_sum), UVM_LOW)
       ///////////////////////////////// Manejar overflow y underflow /////////////////////////////////
       if (exp_Z_num >= 255) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
