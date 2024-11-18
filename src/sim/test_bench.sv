@@ -31,5 +31,12 @@ module tb;
     uvm_config_db#(virtual des_if)::set(null,"uvm_test_top","des_vif",_if);
 //    uvm_config_db#(virtual des_if)::set(null, "uvm_test_top.e0.a0.d0","des_vif",_if);
     run_test("test_FP_Multiplier");
+    // Run each test individually
+    run_test("test_FP_Multiplier_rmode_000");
+    run_test("test_FP_Multiplier_rmode_001");
+    run_test("test_FP_Multiplier_rmode_010");
+    run_test("test_FP_Multiplier_rmode_011");
+    run_test("test_FP_Multiplier_rmode_100");
+    run_test("test_FP_Multiplier_special_cases");
   end
 endmodule

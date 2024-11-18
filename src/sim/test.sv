@@ -45,3 +45,129 @@ class test_FP_Multiplier extends base_test;
   endfunction
 endclass
 
+class test_FP_Multiplier_rmode_000 extends base_test;
+  `uvm_component_utils(test_FP_Multiplier_rmode_000)
+  
+  function new(string name="test_FP_Multiplier_rmode_000", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_000", UVM_LOW)
+    seq.randomize() with {r_mode == 3'b000;};
+    seq.randomize() with {num inside {5000};};
+  endfunction
+endclass
+
+class test_FP_Multiplier_rmode_001 extends base_test;
+  `uvm_component_utils(test_FP_Multiplier_rmode_001)
+  
+  function new(string name="test_FP_Multiplier_rmode_001", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_001", UVM_LOW)
+    seq.randomize() with {r_mode == 3'b001;};
+    seq.randomize() with {num inside {5000};};
+  endfunction
+endclass
+
+class test_FP_Multiplier_rmode_010 extends base_test;
+  `uvm_component_utils(test_FP_Multiplier_rmode_010)
+  
+  function new(string name="test_FP_Multiplier_rmode_010", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_010", UVM_LOW)
+    seq.randomize() with {r_mode == 3'b010;};
+    seq.randomize() with {num inside {5000};};
+  endfunction
+endclass
+
+class test_FP_Multiplier_rmode_011 extends base_test;
+  `uvm_component_utils(test_FP_Multiplier_rmode_011)
+  
+  function new(string name="test_FP_Multiplier_rmode_011", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_011", UVM_LOW)
+    seq.randomize() with {r_mode == 3'b011;};
+    seq.randomize() with {num inside {5000};};
+  endfunction
+endclass
+
+class test_FP_Multiplier_rmode_100 extends base_test;
+  `uvm_component_utils(test_FP_Multiplier_rmode_100)
+  
+  function new(string name="test_FP_Multiplier_rmode_100", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_100", UVM_LOW)
+    seq.randomize() with {r_mode == 3'b100;};
+    seq.randomize() with {num inside {5000};};
+  endfunction
+endclass
+
+
+class test_FP_Multiplier_special_cases extends base_test;
+  `uvm_component_utils(test_FP_Multiplier_special_cases)
+  
+  function new(string name="test_FP_Multiplier_special_cases", uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_FP_Multiplier_special_cases", UVM_LOW)
+    seq.randomize() with {
+      // Aleatorizar modos de operación
+      
+      // Dar mayor peso de probabilidad a los casos específicos
+      if ($urandom_range(0, 100) < 50) begin
+        // 50% de probabilidad para casos especiales
+        fp_X inside {32'h00000000, 32'h7F800000, 32'hFF800000, 32'h7FC00000}; // Zero, Inf, -Inf, NaN
+        fp_Y inside {32'h00000000, 32'h7F800000, 32'hFF800000, 32'h7FC00000}; // Zero, Inf, -Inf, NaN
+      end else begin
+        // 50% de probabilidad para valores aleatorios
+        fp_X dist {32'h00000000 := 10, 32'h7F800000 := 10, 32'hFF800000 := 10, 32'h7FC00000 := 10, [32'h00000001:32'h7F7FFFFF] := 60};
+        fp_Y dist {32'h00000000 := 10, 32'h7F800000 := 10, 32'hFF800000 := 10, 32'h7FC00000 := 10, [32'h00000001:32'h7F7FFFFF] := 60};
+      end
+    };
+    seq.randomize() with {num inside {5000};};
+  endfunction
+
+  virtual task run_phase(uvm_phase phase);
+    phase.raise_objection(this);
+    seq.start(e0.a0.s0);
+    #200;
+    phase.drop_objection(this);
+  endtask
+
+  // Verificar resultados
+  virtual function void check_phase(uvm_phase phase);
+    super.check_phase(phase);
+    if (item.fp_Z == 32'h7FC00000) begin
+      `uvm_info("CHECK", "Result is NaN as expected", UVM_LOW)
+    end else if (item.fp_Z == 32'h7F800000 || item.fp_Z == 32'hFF800000) begin
+      `uvm_info("CHECK", "Result is Inf as expected", UVM_LOW)
+    end else if (item.fp_Z == 32'h00000000) begin
+      `uvm_info("CHECK", "Result is Zero as expected", UVM_LOW)
+    end else if (item.fp_Z == expected_fp_Z) begin
+      `uvm_info("CHECK", "Result matches expected value", UVM_LOW)
+    end else begin
+      `uvm_error("CHECK", $sformatf("Unexpected result: fp_Z=%0h (expected %0h)", item.fp_Z, expected_fp_Z))
+    end
+  endfunction
+endclass

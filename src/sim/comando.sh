@@ -4,7 +4,13 @@ rm -rfv `ls |grep -v ".*\.sv\|.*\.sh"`;
 vcs -Mupdate test_bench.sv  -o salida -full64 -debug_all -sverilog -kdb -l log_test -ntb_opts uvm-1.2 +lint=TFIPC-L -cm line+tgl+cond+fsm+branch+assert +UVM_VERBOSITY=UVM_HIGH;
 
 ./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=FP_Multiplier +ntb_random_seed=1 > deleteme_log_1
-#./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_1011 +ntb_random_seed=2 > deleteme_log_2
+./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_000 +ntb_random_seed=1 > deleteme_log_000
+./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_001 +ntb_random_seed=2 > deleteme_log_001
+./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_010 +ntb_random_seed=3 > deleteme_log_010
+./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_011 +ntb_random_seed=4 > deleteme_log_011
+./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_100 +ntb_random_seed=5 > deleteme_log_100
+./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_special_cases +ntb_random_seed=6 > deleteme_log_special_cases
+
 
 #./salida -cm line+tgl+cond+fsm+branch+assert;
 #dve -full64 -covdir salida.vdb &
