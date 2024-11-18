@@ -133,6 +133,7 @@ class test_FP_Multiplier_special_cases extends base_test;
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_special_cases", UVM_LOW)
     seq.randomize() with {
       // Aleatorizar modos de operación
+      r_mode inside {3'b000, 3'b001, 3'b010, 3'b011, 3'b100};
       
       // Dar mayor peso de probabilidad a los casos específicos
       if ($urandom_range(0, 100) < 50) begin
