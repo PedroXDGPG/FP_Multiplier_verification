@@ -51,6 +51,8 @@ class scoreboard extends uvm_scoreboard;
       
       else begin
         expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h000000}; // Infinito
+        `uvm_info("SCBD", $sformatf("ESSSSSSS IONFIFIFIFexpected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
+
       end 
 
     end 
@@ -149,9 +151,11 @@ class scoreboard extends uvm_scoreboard;
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
         expected_ovrf = 1;
         expected_udrf = 0;
+        `uvm_info("SCBD", $sformatf("ASDFKNASDFIKNIKAFJUDSexpected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
+
       end 
       
-      else if (exp_Z_no_sum <= 8'h7F) begin
+      else if (exp_Z_no_sum <= 127) begin
         expected_fp_Z = {sign_Z, 8'h00, 23'h000000}; // Cero
         expected_ovrf = 0;
         expected_udrf = 1;
