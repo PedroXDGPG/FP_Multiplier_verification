@@ -55,7 +55,7 @@ class test_FP_Multiplier_rmode_000 extends base_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_000", UVM_LOW)
-    seq.randomize() with {r_mode == 3'b000;};
+    seq.randomize() with {r_mode_rnd == 3'b000;};
     seq.randomize() with {num inside {5000};};
   endfunction
 endclass
@@ -70,7 +70,7 @@ class test_FP_Multiplier_rmode_001 extends base_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_001", UVM_LOW)
-    seq.randomize() with {r_mode == 3'b001;};
+    seq.randomize() with {r_mode_rnd == 3'b001;};
     seq.randomize() with {num inside {5000};};
   endfunction
 endclass
@@ -85,7 +85,7 @@ class test_FP_Multiplier_rmode_010 extends base_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_010", UVM_LOW)
-    seq.randomize() with {r_mode == 3'b010;};
+    seq.randomize() with {r_mode_rnd == 3'b010;};
     seq.randomize() with {num inside {5000};};
   endfunction
 endclass
@@ -100,7 +100,7 @@ class test_FP_Multiplier_rmode_011 extends base_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_011", UVM_LOW)
-    seq.randomize() with {r_mode == 3'b011;};
+    seq.randomize() with {r_mode_rnd == 3'b011;};
     seq.randomize() with {num inside {5000};};
   endfunction
 endclass
@@ -115,7 +115,7 @@ class test_FP_Multiplier_rmode_100 extends base_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_100", UVM_LOW)
-    seq.randomize() with {r_mode == 3'b100;};
+    seq.randomize() with {r_mode_rnd == 3'b100;};
     seq.randomize() with {num inside {5000};};
   endfunction
 endclass

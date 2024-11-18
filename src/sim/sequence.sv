@@ -7,7 +7,7 @@ class gen_item_seq extends uvm_sequence;
 
 
   rand int num;
-  
+  rand bit [2:0] r_mode_rnd;
 
   constraint c1{soft num inside {[10:50]};}
 
@@ -16,7 +16,7 @@ class gen_item_seq extends uvm_sequence;
       Item m_item = Item::type_id::create("m_item");
       start_item(m_item);
       m_item.randomize();
-      //m_item.r_mode = 100;
+      m_item.r_mode = r_mode_rnd;
       `uvm_info("SEQ",$sformatf("Generate new item: %s", m_item.convert2str()),UVM_HIGH);
       finish_item(m_item);
     end
