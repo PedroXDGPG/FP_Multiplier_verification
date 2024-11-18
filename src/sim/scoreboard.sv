@@ -134,13 +134,13 @@ class scoreboard extends uvm_scoreboard;
 
         3'b011: begin // Round towards +∞ (Redondeo hacia +infinito)
           if (sign_Z == 0) begin
-            man_Z = man_Z + 1;
+             man_Z[45:23] =  man_Z[45:23] + 1;
           end
         end
 
         3'b100: begin // Round to nearest, ties away from zero (Redondeo al más cercano, empates hacia la magnitud máxima)
           if (round_bit == 1) begin
-            man_Z = man_Z + 1;
+             man_Z[45:23] =  man_Z[45:23] + 1;
           end
         end
 
