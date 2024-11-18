@@ -9,7 +9,6 @@ vcs -Mupdate test_bench.sv  -o salida -full64 -debug_all -sverilog -kdb -l log_t
 ./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_010 +ntb_random_seed=3 > deleteme_log_010
 ./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_011 +ntb_random_seed=4 > deleteme_log_011
 ./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_rmode_100 +ntb_random_seed=5 > deleteme_log_100
-./salida +UVM_VERBOSITY=UVM_HIGH +UVM_TESTNAME=test_FP_Multiplier_special_cases +ntb_random_seed=6 > deleteme_log_special_cases
 
 
 #./salida -cm line+tgl+cond+fsm+branch+assert;

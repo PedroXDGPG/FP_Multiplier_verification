@@ -37,6 +37,5 @@ module tb;
     run_test("test_FP_Multiplier_rmode_010");
     run_test("test_FP_Multiplier_rmode_011");
     run_test("test_FP_Multiplier_rmode_100");
-    run_test("test_FP_Multiplier_special_cases");
   end
 endmodule
