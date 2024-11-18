@@ -146,6 +146,7 @@ class scoreboard extends uvm_scoreboard;
         end
       endcase
       `uvm_info("SCBD", $sformatf("EN IFS RESULTADO: exp_Z_no_sum=%0d ", exp_Z_no_sum), UVM_LOW)
+      `uvm_info("SCBD", $sformatf("2EN IFS RESULTADO: exp_Z_num=%0d ", exp_Z_num), UVM_LOW)
       ///////////////////////////////// Manejar overflow y underflow /////////////////////////////////
       if (exp_Z_num >= 255) begin
         expected_fp_Z = {sign_Z, 8'hFF, 23'h000000}; // Infinito
