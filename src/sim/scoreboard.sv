@@ -148,7 +148,7 @@ class scoreboard extends uvm_scoreboard;
         expected_udrf = 0;
       end 
       
-      else if (exp_Z_num <= 0) begin
+      else if (exp_Z <= 0) begin
         expected_fp_Z = {sign_Z, 8'h00, 23'h000000}; // Cero
         expected_ovrf = 0;
         expected_udrf = 1;
