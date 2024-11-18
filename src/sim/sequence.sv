@@ -16,7 +16,7 @@ class gen_item_seq extends uvm_sequence;
       Item m_item = Item::type_id::create("m_item");
       start_item(m_item);
       m_item.randomize();
-      m_item.r_mode = 011;
+      m_item.r_mode = 100;
       `uvm_info("SEQ",$sformatf("Generate new item: %s", m_item.convert2str()),UVM_HIGH);
       finish_item(m_item);
     end
