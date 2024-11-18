@@ -136,17 +136,21 @@ class test_FP_Multiplier_special_cases extends base_test;
       r_mode inside {3'b000, 3'b001, 3'b010, 3'b011, 3'b100};
       
       // Dar mayor peso de probabilidad a los casos específicos
-      if ($urandom_range(0, 100) < 50) begin
-        // 50% de probabilidad para casos especiales
-        fp_X inside {32'h00000000, 32'h7F800000, 32'hFF800000, 32'h7FC00000}; // Zero, Inf, -Inf, NaN
-        fp_Y inside {32'h00000000, 32'h7F800000, 32'hFF800000, 32'h7FC00000}; // Zero, Inf, -Inf, NaN
-      end else begin
-        // 50% de probabilidad para valores aleatorios
-        fp_X dist {32'h00000000 := 10, 32'h7F800000 := 10, 32'hFF800000 := 10, 32'h7FC00000 := 10, [32'h00000001:32'h7F7FFFFF] := 60};
-        fp_Y dist {32'h00000000 := 10, 32'h7F800000 := 10, 32'hFF800000 := 10, 32'h7FC00000 := 10, [32'h00000001:32'h7F7FFFFF] := 60};
-      end
+      fp_X dist {
+        32'h00000000 := 10, // Zero
+        32'h7F800000 := 10, // Inf
+        32'hFF800000 := 10, // -Inf
+        32'h7FC00000 := 10, // NaN
+        [32'h00000001:32'h7F7FFFFF] := 60 // Other values
+      };
+      fp_Y dist {
+        32'h00000000 := 10, // Zero
+        32'h7F800000 := 10, // Inf
+        32'hFF800000 := 10, // -Inf
+        32'h7FC00000 := 10, // NaN
+        [32'h00000001:32'h7F7FFFFF] := 60 // Other values
+      };
     };
-    seq.randomize() with {num inside {5000};};
   endfunction
 
   virtual task run_phase(uvm_phase phase);
