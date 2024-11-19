@@ -122,3 +122,19 @@ class test_FP_Multiplier_rmode_100 extends base_test;
     seq.randomize() with {r_mode_rnd  == 3'b100; num inside {5000};};
   endfunction
 endclass
+
+class test_zero_multi extends base_test;
+  `uvm_component_utils(test_zero_multi)
+  
+  function new(string name="test_zero_multi",uvm_component parent=null);
+    super.new(name,parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("TEST_NAME", "Running test_zero_multi", UVM_LOW)
+    seq.zero_X = 1; // Multiplicar por 0
+    seq.randomize() with {num inside {10};};
+
+  endfunction
+endclass
