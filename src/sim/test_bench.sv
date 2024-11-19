@@ -7,6 +7,7 @@ import uvm_pkg::*;
 `include "sequence.sv"
 `include "monitor.sv"
 `include "driver.sv"
+`include "report_info.sv"
 `include "scoreboard.sv"
 `include "agent.sv"
 `include "environment.sv"
