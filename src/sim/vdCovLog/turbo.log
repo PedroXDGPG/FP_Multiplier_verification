@@ -1,3 +1,2 @@
 Command Line: /mnt/vol_NFS_rh003/tools/verdi/R-2020.12-SP2/platform/LINUXAMD64/bin/vdCov -covdir salida.vdb
 uname(Linux redhat003 4.18.0-553.27.1.el8_10.x86_64 #1 SMP Fri Oct 18 06:18:15 EDT 2024 x86_64)
-au time 6.560325 1.824889 0.171171 delta 0 0 total 0 0

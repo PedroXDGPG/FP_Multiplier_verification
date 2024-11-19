@@ -1,0 +1,224 @@
+Chronologic VCS simulator copyright 1991-2020
+Contains Synopsys proprietary information.
+Compiler version R-2020.12-SP2_Full64; Runtime version R-2020.12-SP2_Full64;  Nov 18 22:39 2024
+UVM_INFO /mnt/vol_NFS_rh003/tools/vcs/R-2020.12-SP2/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+
+ VCS Coverage Metrics Release R-2020.12-SP2_Full64 Copyright (c) 1991-2020 by Synopsys Inc.
+UVM_INFO @ 0: reporter [RNTST] Running test test_zero_multi...
+UVM_INFO @ 0: reporter [TIMOUTSET] '+UVM_TIMEOUT=1000000000' provided on the command line is being applied.
+UVM_INFO test.sv(141) @ 0: uvm_test_top [TEST_NAME] Running test_zero_multi
+UVM_INFO driver.sv(19) @ 0: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO scoreboard.sv(195) @ 0: uvm_test_top.e0.sb0 [SCBD] r_mode=0 fp_X=0 fp_Y=0 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 0: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 0: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 0: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 0: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=0
+UVM_INFO monitor.sv(30) @ 0: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=0 fp_X=0 fp_Y=0 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO sequence.sv(33) @ 0: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=2 fp_X=0 fp_Y=3136868336 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 10: uvm_test_top.e0.sb0 [SCBD] r_mode=0 fp_X=0 fp_Y=0 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 10: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 10: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 10: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 10: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=0
+UVM_INFO monitor.sv(30) @ 10: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=0 fp_X=0 fp_Y=0 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO driver.sv(19) @ 10: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 10: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=1 fp_X=0 fp_Y=1552605970 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 30: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=baf8cff0 fp_Z=80000000 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 30: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=80000000 (expected 80000000) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 30: uvm_test_top.e0.sb0 [SCBD] DUT: sign=1 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 30: uvm_test_top.e0.sb0 [SCBD] Golden: sign=1 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 30: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=75
+UVM_INFO monitor.sv(30) @ 30: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=3136868336 fp_Z=2147483648 ovrf=0 udrf=1
+UVM_INFO driver.sv(19) @ 30: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 30: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=4 fp_X=0 fp_Y=758822835 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 50: uvm_test_top.e0.sb0 [SCBD] r_mode=1 fp_X=0 fp_Y=5c8ae312 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 50: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 50: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 50: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 50: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=b9
+UVM_INFO monitor.sv(30) @ 50: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=1 fp_X=0 fp_Y=1552605970 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO driver.sv(19) @ 50: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 50: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=0 fp_X=0 fp_Y=1498757146 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 70: uvm_test_top.e0.sb0 [SCBD] r_mode=4 fp_X=0 fp_Y=2d3ab7b3 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 70: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 70: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 70: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 70: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=5a
+UVM_INFO monitor.sv(30) @ 70: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=4 fp_X=0 fp_Y=758822835 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO driver.sv(19) @ 70: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 70: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=1 fp_X=0 fp_Y=1759488421 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 90: uvm_test_top.e0.sb0 [SCBD] r_mode=0 fp_X=0 fp_Y=5955381a fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 90: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 90: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 90: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 90: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=b2
+UVM_INFO monitor.sv(30) @ 90: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=0 fp_X=0 fp_Y=1498757146 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO driver.sv(19) @ 90: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 90: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=4 fp_X=0 fp_Y=1110181436 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 110: uvm_test_top.e0.sb0 [SCBD] r_mode=1 fp_X=0 fp_Y=68dfa9a5 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 110: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 110: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 110: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 110: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=d1
+UVM_INFO monitor.sv(30) @ 110: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=1 fp_X=0 fp_Y=1759488421 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO driver.sv(19) @ 110: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 110: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=1 fp_X=0 fp_Y=1033384280 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 130: uvm_test_top.e0.sb0 [SCBD] r_mode=4 fp_X=0 fp_Y=422c063c fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 130: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 130: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 130: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 130: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=84
+UVM_INFO monitor.sv(30) @ 130: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=4 fp_X=0 fp_Y=1110181436 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO driver.sv(19) @ 130: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 130: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=0 fp_X=0 fp_Y=1382953908 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 150: uvm_test_top.e0.sb0 [SCBD] r_mode=1 fp_X=0 fp_Y=3d983158 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 150: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 150: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 150: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 150: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=7b
+UVM_INFO monitor.sv(30) @ 150: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=1 fp_X=0 fp_Y=1033384280 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO driver.sv(19) @ 150: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 150: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=0 fp_X=0 fp_Y=2900672579 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 170: uvm_test_top.e0.sb0 [SCBD] r_mode=0 fp_X=0 fp_Y=526e33b4 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(199) @ 170: uvm_test_top.e0.sb0 [SCBD] PASS! fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(207) @ 170: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 170: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 170: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=a4
+UVM_INFO monitor.sv(30) @ 170: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=0 fp_X=0 fp_Y=1382953908 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO driver.sv(19) @ 170: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(33) @ 170: uvm_test_top.e0.a0.s0@@seq [SEQ] Generate new item: r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=0
+UVM_INFO scoreboard.sv(195) @ 190: uvm_test_top.e0.sb0 [SCBD] r_mode=0 fp_X=0 fp_Y=ace4c043 fp_Z=80000000 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 190: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=80000000 (expected 80000000) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 190: uvm_test_top.e0.sb0 [SCBD] DUT: sign=1 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 190: uvm_test_top.e0.sb0 [SCBD] Golden: sign=1 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 190: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=59
+UVM_INFO monitor.sv(30) @ 190: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=0 fp_X=0 fp_Y=2900672579 fp_Z=2147483648 ovrf=0 udrf=1
+UVM_INFO driver.sv(19) @ 190: uvm_test_top.e0.a0.d0 [DRV] Wait for item from sequencer
+UVM_INFO sequence.sv(36) @ 190: uvm_test_top.e0.a0.s0@@seq [SEQ] Done generation of 10 items
+UVM_INFO scoreboard.sv(195) @ 210: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 210: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 210: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 210: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 210: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 210: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 230: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 230: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 230: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 230: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 230: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 230: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 250: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 250: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 250: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 250: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 250: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 250: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 270: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 270: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 270: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 270: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 270: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 270: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 290: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 290: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 290: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 290: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 290: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 290: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 310: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 310: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 310: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 310: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 310: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 310: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 330: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 330: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 330: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 330: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 330: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 330: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 350: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 350: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 350: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 350: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 350: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 350: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 370: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 370: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 370: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 370: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 370: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 370: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO scoreboard.sv(195) @ 390: uvm_test_top.e0.sb0 [SCBD] r_mode=2 fp_X=0 fp_Y=2bc9bef2 fp_Z=0 ovrf=0 udrf=1
+UVM_ERROR scoreboard.sv(203) @ 390: uvm_test_top.e0.sb0 [SCBD] ERROR! fp_Z=0 (expected 0) ovrf=0 (expected 0) udrf=1 (expected 0)
+UVM_INFO scoreboard.sv(207) @ 390: uvm_test_top.e0.sb0 [SCBD] DUT: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(208) @ 390: uvm_test_top.e0.sb0 [SCBD] Golden: sign=0 exp=0 man=0
+UVM_INFO scoreboard.sv(210) @ 390: uvm_test_top.e0.sb0 [SCBD] Exponentes: exp_X=0 exp_Y=57
+UVM_INFO monitor.sv(30) @ 390: uvm_test_top.e0.a0.m0 [MON] SAW item r_mode=2 fp_X=0 fp_Y=734641906 fp_Z=0 ovrf=0 udrf=1
+UVM_INFO /mnt/vol_NFS_rh003/tools/vcs/R-2020.12-SP2/etc/uvm-1.2/base/uvm_objection.svh(1276) @ 390: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO scoreboard.sv(245) @ 390: uvm_test_top.e0.sb0 [SCBD] CSV file saved and closed in report_phase.
+UVM_INFO /mnt/vol_NFS_rh003/tools/vcs/R-2020.12-SP2/etc/uvm-1.2/base/uvm_report_catcher.svh(705) @ 390: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /mnt/vol_NFS_rh003/tools/vcs/R-2020.12-SP2/etc/uvm-1.2/base/uvm_report_server.svh(901) @ 390: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :  141
+UVM_WARNING :    0
+UVM_ERROR :   14
+UVM_FATAL :    0
+** Report counts by id
+[DRV]    11
+[MON]    21
+[RNTST]     1
+[SCBD]   106
+[SEQ]    11
+[TEST_DONE]     1
+[TEST_NAME]     1
+[TIMOUTSET]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+
+$finish called from file "/mnt/vol_NFS_rh003/tools/vcs/R-2020.12-SP2/etc/uvm-1.2/base/uvm_root.svh", line 527.
+$finish at simulation time                  390
+
+---------------------------------------------------------------------------
+VCS Coverage Metrics: during simulation line, cond, FSM, branch, tgl was monitored
+---------------------------------------------------------------------------
+
+ Coverage status: End of All Coverages ...
+
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 390
+CPU Time:      0.370 seconds;       Data structure size:   0.6Mb
+Mon Nov 18 22:39:45 2024
