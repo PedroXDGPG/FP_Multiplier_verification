@@ -23,9 +23,12 @@ class gen_item_seq extends uvm_sequence;
       else begin
         m_item.r_mode = r_mode_rnd;
       end
-      
+
       if(zero_X == 1)begin
         m_item.fp_X = 32'b0;
+      end
+      else begin
+        m_item.fp_X = $random;
       end
       `uvm_info("SEQ",$sformatf("Generate new item: %s", m_item.convert2str()),UVM_HIGH);
       finish_item(m_item);
