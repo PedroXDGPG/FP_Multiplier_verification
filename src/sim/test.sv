@@ -41,7 +41,10 @@ class test_FP_Multiplier extends base_test;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    seq.randomize() with {num inside {10000};};
+    seq.randomize() with { r_mode_rnd inside {3'b000, 3'b001, 3'b010, 3'b011, 3'b100}; num inside {10000};};
+
+
+
   endfunction
 endclass
 
