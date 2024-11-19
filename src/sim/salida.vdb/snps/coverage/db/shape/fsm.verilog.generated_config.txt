@@ -1,6 +1,6 @@
 // Synopsys, Inc.
 // User: MEDINILA_ROBLES
-// Date: Mon Nov 18 22:39:36 2024
+// Date: Mon Nov 18 22:45:31 2024
 
 // ==================================================================================================
 // This config file prototype is produced from the last run using the complete list of extracted fsms.

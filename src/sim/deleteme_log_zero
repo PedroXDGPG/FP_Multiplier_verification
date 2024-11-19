@@ -1,6 +1,6 @@
 Chronologic VCS simulator copyright 1991-2020
 Contains Synopsys proprietary information.
-Compiler version R-2020.12-SP2_Full64; Runtime version R-2020.12-SP2_Full64;  Nov 18 22:39 2024
+Compiler version R-2020.12-SP2_Full64; Runtime version R-2020.12-SP2_Full64;  Nov 18 22:45 2024
 UVM_INFO /mnt/vol_NFS_rh003/tools/vcs/R-2020.12-SP2/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2.Synopsys
@@ -220,5 +220,5 @@ VCS Coverage Metrics: during simulation line, cond, FSM, branch, tgl was monitor
 
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 390
-CPU Time:      0.370 seconds;       Data structure size:   0.6Mb
-Mon Nov 18 22:39:45 2024
+CPU Time:      0.360 seconds;       Data structure size:   0.6Mb
+Mon Nov 18 22:45:39 2024
