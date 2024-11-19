@@ -25,7 +25,7 @@ class gen_item_seq extends uvm_sequence;
       end
 
       if(zero_X == 1)begin
-        m_item.fp_X = 32'b0;
+        m_item.fp_X = 32'd0;
       end
       else begin
         m_item.fp_X = $random;
