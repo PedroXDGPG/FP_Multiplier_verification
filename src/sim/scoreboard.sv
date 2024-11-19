@@ -229,7 +229,7 @@ class scoreboard extends uvm_scoreboard;
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
 
-    csv_file = $fopen("results_report.csv", "a");
+    csv_file = $fopen("../results_report.csv", "a");
 
     if (csv_file) begin
 
