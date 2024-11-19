@@ -237,7 +237,7 @@ class scoreboard extends uvm_scoreboard;
       $fdisplay(csv_file, "Num,  Multiplicador, Multiplicando, Resultado obtenido (DUT), Resultado esperado (Reference), Estado\n");
 
       foreach (results_data[i]) begin
-        $fdisplay(csv_file, "%0d, %0h, %0h, %0h, %0h, %s\n",
+        $fdisplay(csv_file, "%0d, %0h, %0h, %0h, %0h, %s",
                   i, results_data[i].fp_x, results_data[i].fp_y, results_data[i].result, results_data[i].expected_result, results_data[i].conclusion);
       end
 
