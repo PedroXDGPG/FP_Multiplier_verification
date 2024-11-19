@@ -213,12 +213,12 @@ class scoreboard extends uvm_scoreboard;
     current_data.fp_y = item.fp_Y;
     current_data.result = item.fp_Z;
     current_data.expected_result = expected_fp_Z;
-    current_data.status = report_info::PASS;
+    current_data.conclusion = report_info::PASS;
 
     assert (current_data.result == current_data.expected_result) 
     else  begin
       `uvm_error("SCBD", "Error, los resultados no coinciden")
-       current_data.status = report_info::ERROR;
+       current_data.conclusion = report_info::ERROR;
     end;
 
     results_data.push_front(current_data);
@@ -238,7 +238,7 @@ class scoreboard extends uvm_scoreboard;
 
       foreach (results_data[i]) begin
         $fdisplay(csv_file, "%0d, %0h, %0h, %0h, %0h, %s\n",
-                  i, results_data[i].fp_x, results_data[i].fp_y, results_data[i].result, results_data[i].expected_result, results_data[i].status);
+                  i, results_data[i].fp_x, results_data[i].fp_y, results_data[i].result, results_data[i].expected_result, results_data[i].conclusion);
       end
 
       $fclose(csv_file);
