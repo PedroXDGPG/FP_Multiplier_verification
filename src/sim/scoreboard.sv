@@ -1,6 +1,10 @@
 class scoreboard extends uvm_scoreboard;
   `uvm_component_utils(scoreboard)
 
+  //base de datos para almacenar los resultados obtenidos y esperados junto con los operandos
+  report_info results_data [$]; 
+  integer csv_file;
+
   function new(string name="scoreboard", uvm_component parent=null);
     super.new(name, parent);
   endfunction
@@ -17,6 +21,9 @@ class scoreboard extends uvm_scoreboard;
     bit [31:0] expected_fp_Z;
     bit expected_ovrf, expected_udrf;
 
+    //para almacenar lo que ira a la base de datos
+    report_info current_data;
+
     // Componentes del número flotante
     bit sign_X, sign_Y, sign_Z;
     bit [7:0] exp_X, exp_Y, exp_Z;
@@ -25,6 +32,8 @@ class scoreboard extends uvm_scoreboard;
     bit [47:0] man_Z;
     bit        round_bit, guard_bit, sticky_bit;
     int i;
+
+    current_data = new();  
 
     // Extraer signo, exponente y significando
     sign_X = item.fp_X[31];
@@ -38,6 +47,7 @@ class scoreboard extends uvm_scoreboard;
     if ((exp_X == 8'hFF && item.fp_X[22:0] != 0) || (exp_Y == 8'hFF && item.fp_Y[22:0] != 0)) begin
       // Caso de NaN
       expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
+      current_data.expected_result = expected_fp_Z;
 
     end 
     
@@ -47,10 +57,12 @@ class scoreboard extends uvm_scoreboard;
           (exp_Y == 8'hFF && item.fp_Y[22:0] == 0 && item.fp_X == 0)) begin
         // Caso de cero * infinito
         expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h400000}; // NaN
+        current_data.expected_result = expected_fp_Z;
       end 
       
       else begin
         expected_fp_Z = {sign_X ^ sign_Y, 8'hFF, 23'h000000}; // Infinito
+        current_data.expected_result = expected_fp_Z;
         `uvm_info("SCBD", $sformatf("ESSSSSSS IONFIFIFIFexpected_fp_Z: expected_fp_Z=%0b ", expected_fp_Z), UVM_LOW)
 
       end 
@@ -59,7 +71,9 @@ class scoreboard extends uvm_scoreboard;
     
     else if (item.fp_X == 0 || item.fp_Y == 0) begin
       // Caso de cero
+      
       expected_fp_Z = {sign_X ^ sign_Y, 8'h00, 23'h000000}; // Cero
+      current_data.expected_result = expected_fp_Z;
 
     end 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,5 +208,43 @@ class scoreboard extends uvm_scoreboard;
     `uvm_info("SCBD", $sformatf("Golden: sign=%0b exp=%0b man=%0b", expected_fp_Z[31], expected_fp_Z[30:23], expected_fp_Z[22:0]), UVM_HIGH)
     // Mostrar exponentes de X y Y
     `uvm_info("SCBD", $sformatf("Exponentes: exp_X=%0h exp_Y=%0h", item.fp_X[30:23], item.fp_Y[30:23]), UVM_LOW)
+    
+    current_data.fp_x = item.fp_X;
+    current_data.fp_y = item.fp_Y;
+    current_data.result = item.fp_Z;
+    current_data.expected_result = expected_fp_Z;
+    current_data.status = PASS;
+
+    assert (current_data.result == current_data.expected_result) 
+    else  begin
+      `uvm_error("SCBD", "Error, los resultados no coinciden")
+       current_data.status = ERROR;
+    end;
+
+    results_data.push_front(current_data);
+
  endfunction
+
+  //fase para generar el CSV
+  virtual function void report_phase(uvm_phase phase);
+    super.report_phase(phase);
+
+    csv_file = $fopen("results_report.csv", "a");
+
+    if (csv_file) begin
+
+      // header
+      $fdisplay(csv_file, "Num,  Multiplicador, Multiplicando, Resultado obtenido (DUT), Resultado esperado (Reference), Estado\n");
+
+      foreach (results_data[i]) begin
+        $fdisplay(csv_file, "%0d, %0h, %0h, %0h, %0h, %s\n",
+                  i, results_data[i].fp_x, results_data[i].fp_y, results_data[i].result, results_data[i].expected_result, results_data[i].status);
+      end
+
+      $fclose(csv_file);
+      `uvm_info("SCBD", "CSV file saved and closed in report_phase.", UVM_LOW);
+    end else begin
+      `uvm_error("SCBD", "Failed to open CSV file for writing in report_phase.");
+    end
+  endfunction
 endclass
