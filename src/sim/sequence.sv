@@ -7,14 +7,21 @@ class gen_item_seq extends uvm_sequence;
 
 
   rand int num;
- // rand bit [2:0] r_mode_rnd;
-
+  rand bit [2:0] r_mode_rnd    ;
+  bit            switch     = 0;
+  constraint c1{soft num inside {[10:50]};}
+  
   virtual task body();
     for(int i = 0; i<num;i++)begin
       Item m_item = Item::type_id::create("m_item");
       start_item(m_item);
       m_item.randomize();
-      //m_item.r_mode = r_mode_rnd;
+      if(switch == 1)begin
+        m_item.r_mode = $urandom_range(0,4);
+      end
+      else begin
+        m_item.r_mode = r_mode_rnd;
+      end
       `uvm_info("SEQ",$sformatf("Generate new item: %s", m_item.convert2str()),UVM_HIGH);
       finish_item(m_item);
     end
