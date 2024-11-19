@@ -213,12 +213,12 @@ class scoreboard extends uvm_scoreboard;
     current_data.fp_y = item.fp_Y;
     current_data.result = item.fp_Z;
     current_data.expected_result = expected_fp_Z;
-    current_data.status = PASS;
+    current_data.status = report_info::PASS;
 
     assert (current_data.result == current_data.expected_result) 
     else  begin
       `uvm_error("SCBD", "Error, los resultados no coinciden")
-       current_data.status = ERROR;
+       current_data.status = report_info::ERROR;
     end;
 
     results_data.push_front(current_data);
