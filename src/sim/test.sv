@@ -43,12 +43,12 @@ class test_FP_Multiplier extends base_test;
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier", UVM_LOW)
 
-    seq.c_r_mode.constraint_mode(1);
-    seq.c_r_mode_000.constraint_mode(0);
-    seq.c_r_mode_001.constraint_mode(0);
-    seq.c_r_mode_010.constraint_mode(0);
-    seq.c_r_mode_011.constraint_mode(0);
-    seq.c_r_mode_100.constraint_mode(0);
+    seq.m_item.c_r_mode.constraint_mode(1);
+    seq.m_item.c_r_mode_000.constraint_mode(0);
+    seq.m_item.c_r_mode_001.constraint_mode(0);
+    seq.m_item.c_r_mode_010.constraint_mode(0);
+    seq.m_item.c_r_mode_011.constraint_mode(0);
+    seq.m_item.c_r_mode_100.constraint_mode(0);
 
     seq.randomize() with {num inside {10000};};
     
@@ -67,12 +67,12 @@ class test_FP_Multiplier_rmode_000 extends base_test;
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_000", UVM_LOW)
 
-    seq.c_r_mode.constraint_mode(0);
-    seq.c_r_mode_000.constraint_mode(1);
-    seq.c_r_mode_001.constraint_mode(0);
-    seq.c_r_mode_010.constraint_mode(0);
-    seq.c_r_mode_011.constraint_mode(0);
-    seq.c_r_mode_100.constraint_mode(0);
+    seq.m_item.c_r_mode.constraint_mode(0);
+    seq.m_item.c_r_mode_000.constraint_mode(1);
+    seq.m_item.c_r_mode_001.constraint_mode(0);
+    seq.m_item.c_r_mode_010.constraint_mode(0);
+    seq.m_item.c_r_mode_011.constraint_mode(0);
+    seq.m_item.c_r_mode_100.constraint_mode(0);
 
     seq.randomize() with {num inside {5000};};
   endfunction
@@ -89,12 +89,12 @@ class test_FP_Multiplier_rmode_001 extends base_test;
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_001", UVM_LOW)
 
-    seq.c_r_mode.constraint_mode(0);
-    seq.c_r_mode_000.constraint_mode(0);
-    seq.c_r_mode_001.constraint_mode(1);
-    seq.c_r_mode_010.constraint_mode(0);
-    seq.c_r_mode_011.constraint_mode(0);
-    seq.c_r_mode_100.constraint_mode(0);
+    seq.m_item.c_r_mode.constraint_mode(0);
+    seq.m_item.c_r_mode_000.constraint_mode(0);
+    seq.m_item.c_r_mode_001.constraint_mode(1);
+    seq.m_item.c_r_mode_010.constraint_mode(0);
+    seq.m_item.c_r_mode_011.constraint_mode(0);
+    seq.m_item.c_r_mode_100.constraint_mode(0);
 
     seq.randomize() with {num inside {5000};};
   endfunction
@@ -111,12 +111,12 @@ class test_FP_Multiplier_rmode_010 extends base_test;
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_010", UVM_LOW)
 
-    seq.c_r_mode.constraint_mode(0);
-    seq.c_r_mode_000.constraint_mode(0);
-    seq.c_r_mode_001.constraint_mode(0);
-    seq.c_r_mode_010.constraint_mode(1);
-    seq.c_r_mode_011.constraint_mode(0);
-    seq.c_r_mode_100.constraint_mode(0);
+    seq.m_item.c_r_mode.constraint_mode(0);
+    seq.m_item.c_r_mode_000.constraint_mode(0);
+    seq.m_item.c_r_mode_001.constraint_mode(0);
+    seq.m_item.c_r_mode_010.constraint_mode(1);
+    seq.m_item.c_r_mode_011.constraint_mode(0);
+    seq.m_item.c_r_mode_100.constraint_mode(0);
 
     seq.randomize() with {num inside {5000};};
   endfunction
@@ -133,12 +133,12 @@ class test_FP_Multiplier_rmode_011 extends base_test;
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_011", UVM_LOW)
 
-    seq.c_r_mode.constraint_mode(0);
-    seq.c_r_mode_000.constraint_mode(0);
-    seq.c_r_mode_001.constraint_mode(0);
-    seq.c_r_mode_010.constraint_mode(0);
-    seq.c_r_mode_011.constraint_mode(1);
-    seq.c_r_mode_100.constraint_mode(0);
+    seq.m_item.c_r_mode.constraint_mode(0);
+    seq.m_item.c_r_mode_000.constraint_mode(0);
+    seq.m_item.c_r_mode_001.constraint_mode(0);
+    seq.m_item.c_r_mode_010.constraint_mode(0);
+    seq.m_item.c_r_mode_011.constraint_mode(1);
+    seq.m_item.c_r_mode_100.constraint_mode(0);
 
     seq.randomize() with {num inside {5000};};
   endfunction
@@ -155,12 +155,12 @@ class test_FP_Multiplier_rmode_100 extends base_test;
     super.build_phase(phase);
     `uvm_info("TEST_NAME", "Running test_FP_Multiplier_rmode_100", UVM_LOW)
 
-    seq.c_r_mode.constraint_mode(0);
-    seq.c_r_mode_000.constraint_mode(0);
-    seq.c_r_mode_001.constraint_mode(0);
-    seq.c_r_mode_010.constraint_mode(0);
-    seq.c_r_mode_011.constraint_mode(0);
-    seq.c_r_mode_100.constraint_mode(1);
+    seq.m_item.c_r_mode.constraint_mode(0);
+    seq.m_item.c_r_mode_000.constraint_mode(0);
+    seq.m_item.c_r_mode_001.constraint_mode(0);
+    seq.m_item.c_r_mode_010.constraint_mode(0);
+    seq.m_item.c_r_mode_011.constraint_mode(0);
+    seq.m_item.c_r_mode_100.constraint_mode(1);
 
     seq.randomize() with {num inside {5000};};
   endfunction
