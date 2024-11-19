@@ -15,6 +15,5 @@ class Item extends uvm_sequence_item;
     super.new(name);
   endfunction
 
-  constraint c_r_mode { r_mode inside {3'b000, 3'b001, 3'b010, 3'b011, 3'b100}; }
 
 endclass
